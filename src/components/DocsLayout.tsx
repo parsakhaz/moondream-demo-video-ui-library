@@ -51,7 +51,7 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
         <div className="border-t border-white/10 p-4">
           <div className="text-sm text-white/60">
             <a
-              href="https://github.com/ParsaKhaz/"
+              href="https://github.com/parsakhaz/moondream-demo-video-ui-library"
               className="hover:text-white transition-colors flex items-center space-x-2"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
