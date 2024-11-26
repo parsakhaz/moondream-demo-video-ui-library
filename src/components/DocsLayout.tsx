@@ -24,31 +24,86 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
   return (
     <div className="min-h-screen flex">
       <CustomCursor />
+      
+      {/* Mobile Menu Button - Moved outside sidebar */}
+      {isMobile && (
+        <button
+          className="fixed left-4 top-4 z-50 bg-white/10 p-2 rounded-lg backdrop-blur-md"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <svg
+            className="w-6 h-6 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {sidebarOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+      )}
+
       {/* Sidebar - Now with black background */}
       <div
         className={`
           fixed lg:relative h-screen bg-black border-r border-white/10
           overflow-y-auto scrollbar-thin scrollbar-track-white/5 scrollbar-thumb-white/20
-          transition-all duration-300 flex flex-col
+          transition-transform duration-300 flex flex-col
           ${isMobile ? "z-50 w-[320px]" : "w-[300px]"} 
           ${isMobile ? (sidebarOpen ? "translate-x-0" : "-translate-x-[320px]") : "translate-x-0"}
         `}
       >
         {/* Sidebar Header */}
-        <div className="sticky top-0 z-10 bg-black/50 backdrop-blur-sm border-b border-white/10 p-4">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl">🎨</span>
-            <span className="font-semibold text-lg text-white">
-              Moondream Open Video Component Library
-            </span>
+        <div className="sticky top-0 z-10 bg-black/50 backdrop-blur-sm border-b border-white/10 px-4 py-3">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center space-x-2 min-w-0 flex-1">
+              <span className="text-2xl shrink-0">🎨</span>
+              <span className="font-semibold text-lg text-white truncate">
+                Moondream Open Video Component Library
+              </span>
+            </div>
+            {isMobile && (
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors shrink-0 ml-2"
+                aria-label="Close sidebar"
+              >
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
 
         {/* Sidebar content */}
-        <div className="flex-1 p-4 overflow-y-auto">{sidebar}</div>
+        <div className="flex-1 px-4 py-3 overflow-y-auto">{sidebar}</div>
 
         {/* Sidebar Footer */}
-        <div className="border-t border-white/10 p-4">
+        <div className="border-t border-white/10 px-4 py-3">
           <div className="text-sm text-white/60 space-y-2">
             <p className="text-xs">Powered by Moondream</p>
             <a
@@ -66,37 +121,6 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
             </a>
           </div>
         </div>
-
-        {/* Mobile toggle button */}
-        {isMobile && (
-          <button
-            className="absolute -right-12 top-4 bg-white/10 p-2 rounded-r-lg backdrop-blur-md"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {sidebarOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
-        )}
       </div>
 
       {/* Main content - Keeps chroma key background */}

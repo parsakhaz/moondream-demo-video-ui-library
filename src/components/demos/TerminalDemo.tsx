@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Inter } from "next/font/google";
 import Typewriter from "typewriter-effect";
-import MacWindow from "../MacWindow";
+import { MacWindow } from "../MacWindow";
 import type { DemoComponent } from "@/types/demo";
 import { useConfig } from "@/context/ConfigContext";
 import { ConfigEditor } from "@/components/ConfigEditor";
@@ -12,7 +12,7 @@ const TerminalDemo: DemoComponent = () => {
   const { config } = useConfig();
 
   return (
-    <MacWindow className="max-w-2xl">
+    <MacWindow className="max-w-2xl" componentTitle="Terminal Animation">
       <div className="text-center">
         <motion.div
           initial={{ opacity: 0 }}

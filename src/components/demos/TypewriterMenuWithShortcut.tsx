@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import MacWindow from "../MacWindow";
+import { MacWindow } from "../MacWindow";
 import type { DemoComponent } from "@/types/demo";
 import { useConfig } from "@/context/ConfigContext";
 import { useState, useEffect, useCallback } from "react";
@@ -88,7 +88,7 @@ const TypewriterMenuWithShortcut: DemoComponent = () => {
 
   return (
     <div className="space-y-8">
-      <MacWindow className="max-w-3xl pb-48">
+      <MacWindow className="max-w-3xl pb-48" componentTitle="Interactive Typewriter">
         <div className="flex items-center justify-center p-12">
           <div className="flex items-center gap-4">
             {/* Dropdown */}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import MacWindow from "../MacWindow";
+import { MacWindow } from "../MacWindow";
 import type { DemoComponent } from "@/types/demo";
 import { useConfig } from "@/context/ConfigContext";
 import { useState, useEffect } from "react";
@@ -18,7 +18,7 @@ const CodeBlockDemo: DemoComponent = () => {
   }, [config.codeEditor.code]);
 
   return (
-    <MacWindow className="max-w-2xl">
+    <MacWindow className="max-w-2xl" componentTitle="Animated Code Editor">
       <div className="text-white font-mono">
         {/* Code Editor Header */}
         <div className="flex items-center justify-between mb-4 text-sm text-gray-400">

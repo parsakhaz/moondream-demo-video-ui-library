@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import MacWindow from "../MacWindow";
+import { MacWindow } from "../MacWindow";
 import type { DemoComponent } from "@/types/demo";
 import { useConfig } from "@/context/ConfigContext";
 import { useState, useEffect } from "react";
