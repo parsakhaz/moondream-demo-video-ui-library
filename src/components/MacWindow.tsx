@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useConfig } from "@/context/ConfigContext";
 import { defaultConfig, macWindowVariants } from "@/config/defaults";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useComponents } from "@/context/ComponentsContext";
 
 interface MacWindowProps {
@@ -24,6 +24,7 @@ export function MacWindow({
   const [isClosing, setIsClosing] = useState(false);
   const componentsContext = useComponents();
   const setActiveComponents = (componentsContext as any).setActiveComponents;
+  const windowRef = useRef<HTMLDivElement>(null);
 
   // Safely access macWindow config with fallback to defaults
   const macWindowConfig = config?.macWindow || defaultConfig.macWindow;
@@ -59,13 +60,14 @@ export function MacWindow({
           [componentTitle]: false,
         }));
       }
-    }, 1000); // Shortened animation duration
+    }, 600); // Match animation duration
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          ref={windowRef}
           className={`rounded-xl border ${className}`}
           style={{
             backgroundColor: variantStyles.backgroundColor,
@@ -98,14 +100,15 @@ export function MacWindow({
           exit={isClosing ? {
             scale: [1, 1.02, 0.98, 0.95, 0.8, 0.4],
             opacity: [1, 0.9, 0.8, 0.6, 0.4, 0],
-            x: [0, -2, 4, -4, 2, 0],
+            x: [0, -2, 4, -4, 2, 0], 
             y: [0, 2, -2, 2, -2, 0],
             rotateX: [0, 2, -2, 2, -2, 0],
             scaleY: [1, 1, 0.8, 0.6, 0.3, 0.1],
+            scaleX: [1, 1, 1, 1, 1, 0.1], // Added horizontal compression at the end
             transformOrigin: ["50% 50%", "50% 50%", "50% 50%", "50% 50%", "50% 50%", "50% 50%"],
             filter: [
               "brightness(1) contrast(1) blur(0px) hue-rotate(0deg)",
-              "brightness(1.2) contrast(1.4) blur(1px) hue-rotate(5deg)",
+              "brightness(1.2) contrast(1.4) blur(1px) hue-rotate(5deg)", 
               "brightness(1.4) contrast(1.6) blur(2px) hue-rotate(-5deg)",
               "brightness(0.8) contrast(2) blur(3px) hue-rotate(10deg)",
               "brightness(0.4) contrast(3) blur(4px) hue-rotate(-10deg)",
@@ -120,8 +123,8 @@ export function MacWindow({
             ],
             backgroundSize: ["100% 100%", "100% 2px", "100% 3px", "100% 2px", "100% 100%"],
             transition: {
-              duration: 1,
-              times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+              duration: 0.6,
+              times: [0, 0.15, 0.3, 0.45, 0.6, 0.75],
               ease: [0.4, 0, 0.2, 1],
             },
           } : undefined}
