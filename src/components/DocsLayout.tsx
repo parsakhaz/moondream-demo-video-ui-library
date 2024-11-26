@@ -9,11 +9,15 @@ interface DocsLayoutProps {
 
 export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
+      const isMobileView = window.innerWidth < 1024;
+      setIsMobile(isMobileView);
+      if (!isMobileView) {
+        setSidebarOpen(true);
+      }
     };
 
     checkMobile();
@@ -68,11 +72,11 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
       >
         {/* Sidebar Header */}
         <div className="sticky top-0 z-10 bg-black/50 backdrop-blur-sm border-b border-white/10 px-4 py-3">
-          <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center space-x-2 min-w-0 flex-1">
-              <span className="text-2xl shrink-0">🎨</span>
-              <span className="font-semibold text-lg text-white truncate">
-                Moondream Open Video Component Library
+          <div className="flex items-start justify-between">
+            <div className="flex items-start space-x-2">
+              <span className="text-2xl shrink-0 mt-0.5">🎨</span>
+              <span className="font-semibold text-base sm:text-lg text-white leading-tight">
+                {isMobile ? "Moondream\nComponent Library" : "Moondream Open Video Component Library"}
               </span>
             </div>
             {isMobile && (
