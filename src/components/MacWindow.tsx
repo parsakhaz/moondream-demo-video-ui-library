@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useConfig } from "../context/ConfigContext";
 import { defaultConfig, macWindowVariants } from "../config/defaults";
 
@@ -53,9 +53,22 @@ export default function MacWindow({
               : undefined,
         ...extraStyles,
       }}
-      whileHover={animations.hover ? { y: -2 } : undefined}
-      initial={animations.mount ? { opacity: 0, y: 20 } : undefined}
-      animate={animations.mount ? { opacity: 1, y: 0 } : undefined}
+      whileHover={animations.hover ? { 
+        y: -2,
+        transition: { duration: 0.4, ease: "easeOut" }
+      } : undefined}
+      initial={animations.mount ? { 
+        opacity: 0, 
+        y: 20,
+      } : undefined}
+      animate={animations.mount ? { 
+        opacity: 1, 
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: "easeOut"
+        }
+      } : undefined}
     >
       <div
         className="h-12 rounded-t-xl border-b flex items-center px-4"
@@ -68,22 +81,45 @@ export default function MacWindow({
           <div className="flex gap-2 absolute">
             <motion.div
               className={`w-3 h-3 rounded-full ${variantStyles.buttonStyle === "minimal" ? "bg-white/20" : "bg-[#ff5f57]"}`}
-              whileHover={animations.buttonHover ? { scale: 1.1 } : undefined}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.3 }}
+              whileHover={animations.buttonHover ? { 
+                scale: 1.1,
+                transition: { duration: 0.3, ease: "easeOut" }
+              } : undefined}
             />
             <motion.div
               className={`w-3 h-3 rounded-full ${variantStyles.buttonStyle === "minimal" ? "bg-white/20" : "bg-[#febc2e]"}`}
-              whileHover={animations.buttonHover ? { scale: 1.1 } : undefined}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
+              whileHover={animations.buttonHover ? { 
+                scale: 1.1,
+                transition: { duration: 0.3, ease: "easeOut" }
+              } : undefined}
             />
             <motion.div
               className={`w-3 h-3 rounded-full ${variantStyles.buttonStyle === "minimal" ? "bg-white/20" : "bg-[#28c841]"}`}
-              whileHover={animations.buttonHover ? { scale: 1.1 } : undefined}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.3 }}
+              whileHover={animations.buttonHover ? { 
+                scale: 1.1,
+                transition: { duration: 0.3, ease: "easeOut" }
+              } : undefined}
             />
           </div>
         )}
         {showTitle && title && (
-          <div className="w-full text-center text-white/60 text-sm font-medium">
+          <motion.div 
+            className="w-full text-center text-white/60 text-sm font-medium"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.3 }}
+          >
             {title}
-          </div>
+          </motion.div>
         )}
       </div>
       <div className="p-4">{children}</div>

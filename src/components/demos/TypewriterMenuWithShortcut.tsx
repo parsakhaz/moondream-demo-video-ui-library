@@ -56,17 +56,6 @@ const TypewriterMenuWithShortcut: DemoComponent = () => {
   }, [isWaitingForEnter, currentItemIndex, menuItems.length]);
 
   useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        handleEnter();
-      }
-    };
-
-    document.addEventListener("keypress", handleKeyPress);
-    return () => document.removeEventListener("keypress", handleKeyPress);
-  }, [handleEnter]);
-
-  useEffect(() => {
     if (!isTyping || isWaitingForEnter) return;
 
     const currentItem = menuItems[currentItemIndex];
@@ -157,9 +146,16 @@ const TypewriterMenuWithShortcut: DemoComponent = () => {
 
             {/* Typewriter Input */}
             <motion.div
-              className="bg-white rounded-full px-6 py-3 shadow-lg flex items-center justify-between min-w-[300px]"
+              className="bg-white rounded-full px-6 py-3 shadow-lg flex items-center min-w-[300px] cursor-pointer"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                scale: isEnterPressed ? 1.05 : 1
+              }}
+              whileHover={isWaitingForEnter ? { scale: 1.02 } : {}}
+              whileTap={isWaitingForEnter ? { scale: 0.98 } : {}}
+              onClick={handleEnter}
               transition={{ duration: 0.5 }}
             >
               <div className="flex items-center flex-1">
@@ -174,37 +170,6 @@ const TypewriterMenuWithShortcut: DemoComponent = () => {
                   }}
                 />
               </div>
-              <motion.button
-                onClick={handleEnter}
-                className={`ml-4 pl-4 border-l border-black/10 flex items-center transition-opacity ${
-                  isWaitingForEnter
-                    ? "opacity-100 cursor-pointer"
-                    : "opacity-50 cursor-default"
-                }`}
-                whileHover={isWaitingForEnter ? { scale: 1.05 } : {}}
-                whileTap={isWaitingForEnter ? { scale: 0.95 } : {}}
-              >
-                <div className="flex items-center gap-1 text-black/80">
-                  <motion.kbd
-                    className="px-3 py-1 rounded bg-black/5 text-black font-medium border border-black/10 hover:bg-black/10 transition-colors"
-                    animate={
-                      isEnterPressed
-                        ? {
-                            scale: [1, 0.9, 1],
-                            backgroundColor: [
-                              "rgba(0,0,0,0.05)",
-                              "rgba(0,0,0,0.15)",
-                              "rgba(0,0,0,0.05)",
-                            ],
-                          }
-                        : {}
-                    }
-                    transition={{ duration: 0.15 }}
-                  >
-                    ↵
-                  </motion.kbd>
-                </div>
-              </motion.button>
             </motion.div>
           </div>
         </div>
