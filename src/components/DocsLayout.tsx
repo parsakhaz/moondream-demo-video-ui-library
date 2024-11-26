@@ -49,7 +49,8 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
 
         {/* Sidebar Footer */}
         <div className="border-t border-white/10 p-4">
-          <div className="text-sm text-white/60">
+          <div className="text-sm text-white/60 space-y-2">
+            <p className="text-xs">Powered by Moondream</p>
             <a
               href="https://github.com/parsakhaz/moondream-demo-video-ui-library"
               className="hover:text-white transition-colors flex items-center space-x-2"

@@ -365,7 +365,7 @@ src/
 
 ## 📄 License
 
-MIT License - see LICENSE.md
+This project is open source under the MIT License. As per the license terms, any application or service using this software must display "Powered by Moondream" visibly to end users.
 
 ## 🔧 Component Configuration System
 
