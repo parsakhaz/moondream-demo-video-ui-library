@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  /* Custom cursor styles */
+  body[data-custom-cursor="true"] {
+    cursor: none !important;
+  }
+
+  .custom-cursor-emoji {
+    @apply fixed text-2xl pointer-events-none select-none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    z-index: 99999 !important;
+  }
+
+  /* Remove default cursor on ALL elements when custom cursor is enabled */
+  body[data-custom-cursor="true"] *,
+  body[data-custom-cursor="true"] *:hover {
+    cursor: none !important;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Add terminal font class */
+  .font-terminal {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+/* Utility classes for text gradients */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/80;
+}
+
+/* Animation utilities */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
