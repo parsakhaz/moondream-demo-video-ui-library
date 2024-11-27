@@ -6,6 +6,7 @@ import { useComponents } from "@/context/ComponentsContext";
 import { demos } from "@/components/demos";
 import { ConfigEditor } from "@/components/ConfigEditor";
 import { ResponsiveScaleWrapper } from "@/components/ResponsiveScaleWrapper";
+import { PasswordModal } from "@/components/PasswordModal";
 import { useState } from "react";
 
 const getConfigId = (
@@ -46,6 +47,18 @@ const getConfigId = (
 export default function Home() {
   const { activeComponents } = useComponents();
   const [resetKey, setResetKey] = useState(0);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [isTitleUnlocked, setIsTitleUnlocked] = useState(false);
+
+  const handleTitleClick = () => {
+    if (!isTitleUnlocked) {
+      setIsPasswordModalOpen(true);
+    }
+  };
+
+  const handleCorrectPassword = () => {
+    setIsTitleUnlocked(true);
+  };
 
   return (
     <>
@@ -59,8 +72,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <PasswordModal 
+        isOpen={isPasswordModalOpen}
+        onClose={() => setIsPasswordModalOpen(false)}
+        onCorrectPassword={handleCorrectPassword}
+      />
+
       <DocsLayout
-        sidebar={<DocsSidebar currentPath="/" />}
+        sidebar={
+          <DocsSidebar 
+            currentPath="/" 
+            onTitleClick={handleTitleClick}
+            isTitleUnlocked={isTitleUnlocked}
+          />
+        }
         main={
           <div>
             <div className="flex flex-col items-center">

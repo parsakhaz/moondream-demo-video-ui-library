@@ -110,7 +110,7 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
         <div className="border-t border-white/10 px-4 py-3">
           <div className="text-sm text-white/60 space-y-2">
             <p className="text-xs">Made with ❤️ by Moondream</p>
-            <a href="mailto:parsa@m87.ai" className="text-xs hover:text-white transition-colors">Questions? Build something with Moondream? Let us know!</a>
+            <a href="https://discord.com/invite/tRUdpjDQfH" target="_blank" rel="noopener noreferrer" className="text-xs hover:text-white transition-colors">Questions? Build something with Moondream? Let us know!</a>
             <a
               href="https://github.com/parsakhaz/moondream-demo-video-ui-library"
               className="hover:text-white transition-colors flex items-center space-x-2"
