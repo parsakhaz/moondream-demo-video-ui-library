@@ -63,7 +63,7 @@ export default function DocsLayout({ sidebar, main }: DocsLayoutProps) {
       {/* Sidebar - Now with black background */}
       <div
         className={`
-          fixed lg:relative h-screen bg-black border-r border-white/10
+          fixed lg:relative min-h-screen bg-black border-r border-white/10
           overflow-y-auto scrollbar-thin scrollbar-track-white/5 scrollbar-thumb-white/20
           transition-transform duration-300 flex flex-col
           ${isMobile ? "z-50 w-[320px]" : "w-[300px]"} 

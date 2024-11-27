@@ -79,7 +79,7 @@ animate();`,
     },
   },
   macWindow: {
-    variant: "glassmorphic" as const,
+    variant: "default" as const,
     showTitle: true,
     title: "Powered by Moondream",
     customCursor: false,
