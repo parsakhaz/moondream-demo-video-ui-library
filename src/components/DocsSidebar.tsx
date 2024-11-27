@@ -33,12 +33,6 @@ export function DocsSidebar({
 
   const isActive = (path: string) => currentPath === path;
 
-  const handleTitleClick = () => {
-    if (!isTitleUnlocked) {
-      return;
-    }
-  };
-
   return (
     <div className="text-white">
       {/* MacWindow Settings */}
@@ -71,7 +65,7 @@ export function DocsSidebar({
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-sm font-semibold text-white uppercase tracking-wider">
+          <h2 className="text-sm pt-4 font-semibold text-white uppercase tracking-wider">
             Components
           </h2>
           <div className="space-y-4">
@@ -170,7 +164,7 @@ export function DocsSidebar({
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-sm pt-2 font-semibold text-white uppercase tracking-wider">
+          <h2 className="text-sm pt-4 font-semibold text-white uppercase tracking-wider">
             Window Style
           </h2>
           <div className="space-y-2">
