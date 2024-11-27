@@ -2,6 +2,11 @@
 
 A specialized open source UI component library designed for video content creators, featuring animated components with chroma key backgrounds for easy integration into video productions.
 
+## 🎥 Preview
+
+![Demo of Moondream Components](./demo.gif)
+
+
 ## 🎯 Features
 
 - **Chroma Key Ready**: All components render on a pure blue (#0000FF) background for easy keying
